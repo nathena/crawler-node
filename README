@@ -1,0 +1,7 @@
+## nodejs 爬虫
+
+### 使用了cheerio、mysql、request
+
+### 使用Promise处理回调
+
+### 使用node(LTS)版本
