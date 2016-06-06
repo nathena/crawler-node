@@ -1,8 +1,0 @@
-{
-  "apps" : [{
-    "name"        : "crawler-node",
-    "script"      : "index.js",
-    "watch"       : ["bin","crawlers","config.js","index.js","WorkerChain.js","pm2.json"],
-    "log_date_format"  : "YYYY-MM-DD HH:mm Z"
-  }]
-}

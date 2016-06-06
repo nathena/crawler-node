@@ -43,8 +43,8 @@ exports = module.exports = {
 
     //db_mysqlConfig: {
     //    "host": "127.0.0.1",
-    //    "user": "op",
-    //    "password": "op@isnosafe",
+    //    "user": "",
+    //    "password": "",
     //    "database": "crawler",
     //    "dateStrings":true,
     //    "charset": "utf8mb4",
