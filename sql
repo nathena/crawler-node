@@ -1,0 +1,28 @@
+CREATE TABLE `crawler`.`t_crawler` (
+  `id` CHAR(32) NOT NULL,
+  `title` VARCHAR(255) NULL,
+  `province` VARCHAR(10) NULL COMMENT '省份',
+  `city` VARCHAR(10) NULL COMMENT '城市',
+  `region` VARCHAR(10) NULL COMMENT '行政区',
+  `business_area` VARCHAR(10) NULL COMMENT '商圈',
+  `addr` VARCHAR(255) NULL,
+  `room_type` VARCHAR(10) NULL COMMENT '户型',
+  `area` VARCHAR(10) NULL COMMENT '面积',
+  `floor` VARCHAR(10) NULL COMMENT '楼层',
+  `style` VARCHAR(10) NULL COMMENT '租房类型',
+  `direction` VARCHAR(10) NULL COMMENT '朝向',
+  `decor` VARCHAR(10) NULL COMMENT '装修',
+  `site_url` VARCHAR(1024) NULL COMMENT '站点url',
+  `pub_date` VARCHAR(45) NULL COMMENT '站点发布时间',
+  `create_time` VARCHAR(45) NULL,
+  `site` VARCHAR(10) NULL '站点',
+  `type` TINYINT NULL COMMENT '业务类型',
+  `type_name` VARCHAR(10) NULL COMMENT '租房类型',
+  `up` TINYINT NULL COMMENT '更新次数',
+  `rent_price` INT NULL,
+  `rent_type` CHAR(5) NULL,
+  `mobile` VARCHAR(45) NULL,
+  `username` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+

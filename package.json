@@ -1,0 +1,19 @@
+{
+  "name": "crawler-nodejs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "iconv": "^2.2.0",
+    "iconv-lite": "^0.4.13",
+    "immediate": "^3.2.2",
+    "log4js": "^0.6.36",
+    "mysql": "^2.10.2",
+    "node-uuid": "^1.4.7",
+    "phantom": "^2.1.2",
+    "request": "^2.72.0"
+  }
+}
