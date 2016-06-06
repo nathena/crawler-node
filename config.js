@@ -7,7 +7,7 @@ var path = require("path");
 exports = module.exports = {
 
     debug: true,
-    name: "房妈妈爬虫引擎",
+    name: "爬虫引擎",
     description: "爬虫",
     version: "0.1.0",
 
