@@ -3,10 +3,10 @@
  */
 var util   = require("util");
 var cheerio = require("cheerio");
-var uuid = require("../lib/UUID");
-var dateTime = require("../lib/DateTimeUtil");
+var uuid = require("../../lib/UUID");
+var dateTime = require("../../lib/DateTimeUtil");
 
-var Worker = require("../lib/WorkerChain");
+var Worker = require("../../lib/WorkerChain");
 
 var options = {};
 options["Cookie"] = "gotoSite=xm;CNZZDATA1252896027=682520566-1464418840-http%253A%252F%252Fhouse1.4846.com%253A20002%252F%7C1464597614; Hm_lvt_71b06c2cbb8ee39cbaf2b225a876c356=1464419801,1464419810,1464419815,1464602186; SESSIONID=f7id7asp2o5gacjk51foe94231; Hm_lpvt_71b06c2cbb8ee39cbaf2b225a876c356=1464602541";

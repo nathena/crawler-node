@@ -3,10 +3,10 @@
  */
 var util   = require("util");
 var cheerio = require("cheerio");
-var uuid = require("../lib/UUID");
-var dateTime = require("../lib/DateTimeUtil");
+var uuid = require("../../lib/UUID");
+var dateTime = require("../../lib/DateTimeUtil");
 
-var Worker = require("../lib/WorkerChain");
+var Worker = require("../../lib/WorkerChain");
 
 var options = {};
 //options["User-Agent"] = "Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69 MicroMessenger/6.3.16 NetType/WIFI Language/zh_CN";

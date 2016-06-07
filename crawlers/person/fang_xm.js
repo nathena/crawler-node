@@ -4,10 +4,10 @@
 var iconv = require("iconv-lite");
 var util   = require("util");
 var cheerio = require("cheerio");
-var uuid = require("../lib/UUID");
-var dateTime = require("../lib/DateTimeUtil");
+var uuid = require("../../lib/UUID");
+var dateTime = require("../../lib/DateTimeUtil");
 
-var Worker = require("../lib/WorkerChain");
+var Worker = require("../../lib/WorkerChain");
 
 var options = {};
 options["Accept-Charset"] = "gb2312";
