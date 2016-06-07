@@ -52,8 +52,6 @@ Worker.start("s58_xm",urls,options,function(datas){
         var $ = cheerio.load(body,{decodeEntities: false});
 
         var house = {};
-
-        var _url = url.substring(0,url.indexOf("?"));
         var _url = url,index = url.indexOf("?");
         if( index > -1 ){
             _url = _url.substring(0,index);
