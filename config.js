@@ -12,8 +12,8 @@ exports = module.exports = {
     version: "0.1.0",
 
     log4js: {
-        //"category": "console",
-        "category": "logInfo",
+        "category": "console",
+        //"category": "logInfo",
         "appenders": [
             // 下面一行应该是用于跟express配合输出web请求url日志的
             {"type": "console", "category": "console"},
@@ -28,28 +28,6 @@ exports = module.exports = {
                 "category": "logInfo"              // 记录器名
             }],
         "levels": {"logInfo": "DEBUG"}        // 设置记录器的默认显示级别，低于这个级别的日志，不会输出
-    },
-
-    //db_mysqlConfig: {
-    //    "host": "127.0.0.1",
-    //    "user": "root",
-    //    "password": "",
-    //    "database": "crawler",
-    //    "dateStrings":true,
-    //    "charset": "utf8mb4",
-    //    debug:false,
-    //    connectionLimit:"3",
-    //},
-
-    db_mysqlConfig: {
-        "host": "127.0.0.1",
-        "user": "op",
-        "password": "op@isnosafe",
-        "database": "crawler",
-        "dateStrings":true,
-        "charset": "utf8mb4",
-        debug:true,
-        connectionLimit:"3"
     },
 
     mongoClient : "mongodb://127.0.0.1:27017/crawlers"

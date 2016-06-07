@@ -1,7 +1,6 @@
 /**
  * Created by nathena on 16/5/28.
  */
-var parserUrl = require("url");
 var util   = require("util");
 var cheerio = require("cheerio");
 var uuid = require("../../lib/UUID");
@@ -14,8 +13,6 @@ options["User-Agent"] = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) 
 
 var url = "http://m.58.com/xm/ershoufang/pn%d/?segment=true";
 var detailUrl = "%s";
-var mobile_site = "http://app.58.com/api/windex/scandetail/car/%d/?pid=799"
-
 var urls = [util.format(url,1),util.format(url,2)];
 //var urls = [util.format(url,1)];
 
@@ -41,20 +38,22 @@ Worker.start("s58_shh_xm",urls,options,function(datas){
     for(var i=0;i<datas.length;i++){
 
         body = datas[i][0],url = datas[i][1];
-
-
         var $ = cheerio.load(body,{decodeEntities: false});
 
         var house = {};
-
-        var _url = url.substring(0,url.indexOf("?"));
         var _url = url,index = url.indexOf("?");
         if( index > -1 ){
             _url = _url.substring(0,index);
         }
         house["site_url"] = _url;
-        house["pub_date"] = $(".meta-time li").eq(0).text().replace("发布时间:","").trim();
-
+        var pub_date = $(".name-info dd").eq(0).html(),index = pub_date.indexOf("</script>");
+        if( index > -1 ){
+            pub_date = pub_date.substring(index+"</script>".length,pub_date.length).trim();
+        }
+        //console.log($(".name-info").html()+" "+_url);
+        //break;
+        house["pub_date"] = (pub_date || dateTime.getCurrentDate()).trim();
+        //重复
         if( _cralweredData && _cralweredData[house["site_url"]] && _cralweredData[house["site_url"]]["pub_date"] == house["pub_date"] ){
             break;
         }
@@ -65,68 +64,44 @@ Worker.start("s58_shh_xm",urls,options,function(datas){
         house["province"] = "福建";
         house["city"] = "厦门";
 
-        var meta = $(".meta li");
-
-        var houseInfo_detail = $(".houseInfo-detail li");
-
-        var region_info = houseInfo_detail.eq(2).find("i").text();
-        var region_info_data = region_info.split("-");
+        var regions = $(".infor-other li").eq(3).text().replace("位置：","").trim();
+        regions = regions.split("-");
         //区域
-        house["region"] = (region_info_data[0] || "").trim();
+        house["region"] = (regions[0] || "").trim();
         //商圈
-        region_info_data.shift();
-        house["business_area"] = region_info_data.join(" ").trim();
+        house["business_area"] = (regions[1] || "").trim();
         //title
-        house["title"] = $(".meta-tit").text().trim();
-        //租金
-        house["rent_price"] = houseInfo_detail.eq(1).find("i").text().trim();
+        house["title"] = $("#titlename").text().trim();
+        //售价
+        house["total"] = $(".infor-price li").eq(0).find(".yellow").text().trim();
+        //单价格价
+        house["price"] = $(".infor-other li").eq(0).find(".black").text().trim();
         //户型
-        house["room_type"] = houseInfo_detail.eq(0).find("i").text().trim();
-        //租住方式
-        //house["rent_type"] = meta.eq(2).find("span").text().trim();
-
-        var houseInfo_meta = $(".houseInfo-meta li");
-        var houseDetail_type = $(".houseDetail-type li");
-
+        house["room_type"] = $(".infor-price li").eq(1).find(".yellow").text().trim();
         //面积
-        house["area"] = houseInfo_meta.eq(1).find("span").eq(0).text().replace("面积:","").trim();
+        house["area"] = $(".infor-price li").eq(2).find(".yellow").text().trim();
         //装修
-        house["decor"] = houseDetail_type.eq(1).text().replace("装","").replace("修","").replace(":","").trim();
+        house["decor"] = $(".descrip-infor li").eq(2).find(".black").text().trim();
         //朝向
-        house["direction"] = houseDetail_type.eq(0).text().replace("朝","").replace("向","").replace(":","").trim();
-        //建筑类型
-        house["style"] = houseDetail_type.eq(2).text().replace("类","").replace("型","").replace(":","").trim();
+        house["direction"] = $(".infor-other li").eq(1).find(".black").text();
+        //建筑类型~ 板楼
+        house["style"] = $(".descrip-infor li").eq(3).find(".black").text().trim();
         //楼层
-        house["floor"] = houseInfo_meta.eq(0).find("span").eq(1).text();
-
-        house["username"] = $(".profile-name").text().trim();
-
-        house["addr"] = house["region"]+house["business_area"]+houseInfo_meta.eq(0).find("span").eq(0).text().replace("小区:","").trim();
-
+        house["floor"] = $(".infor-other li").eq(2).find(".black").text().trim();
+        //房龄
+        house["year"] = $(".descrip-infor li").eq(0).find(".black").text().trim();
+        //产权
+        house["property"] = $(".descrip-infor li").eq(1).find(".black").text().trim();
+        //房东
+        house["username"] = $(".contact li").eq(0).text().trim();
+        //联系方式
+        house["mobile"] = $(".contact li").eq(1).text().trim();
+        //地址
+        house["addr"] = $(".address").text().trim();
+        //更新次数
         house["up"] = 0;
 
-        house["mobile"] = $(".meta-phone").text().trim();
-
         data.push(house);
-
-        var _data = parserUrl.parse(url,true);
-        _data = _data["query"]["entinfo"] || "";
-        if( !_data ){
-
-            logger.debug(" ...."+url+" 获取不到手机号码");
-            urls.push("about:blank");
-
-        } else {
-            _data = _data.substring(0,_data.indexOf("_0"));
-            var _mobile_site = util.format(mobile_site,_data);
-
-            urls.push(_mobile_site);
-        }
     }
-
-    if( data.length>0 ){
-        return data;
-    }
-    return Promise.reject("没有新的数据可以抓取");
-
-})
+    return data;
+},"t_crawler_shh")
