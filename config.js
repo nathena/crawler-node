@@ -51,4 +51,6 @@ exports = module.exports = {
     //    debug:true,
     //    connectionLimit:"3",
     //}
+
+    mongoClient : "mongodb://127.0.0.1:27017/crawlers"
 };

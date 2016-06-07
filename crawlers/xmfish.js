@@ -6,7 +6,7 @@ var cheerio = require("cheerio");
 var uuid = require("../lib/UUID");
 var dateTime = require("../lib/DateTimeUtil");
 
-var Worker = require("./myWorker");
+var Worker = require("../lib/WorkerChain");
 
 var options = {};
 options["Cookie"] = "24a79_saltkey=a66GHPRb; 24a79_lastpos=other; 24a79_oltoken=BFtRB1JVCQcHAjEDB1I; 24a79_readlog=%2C12557561%2C12583647%2C12703550%2C; 24a79_ipstate=1464599883; 24a79_cloudClientUid=49100991; CNZZDATA1254399833=718311327-1464227415-http%253A%252F%252Fwww.xmfish.com%252F%7C1464598006; CNZZDATA2119469=cnzz_eid%3D487015705-1464227415-http%253A%252F%252Fwww.xmfish.com%252F%26ntime%3D1464598958; 24a79_winduser=BFZUBVVTDj5VB1kBBQUGVwUABlZTDwdTCAZVDwtRAVUDBAIEAQUFBGpoVVJWW1dAVAA8GAY; 24a79_ck_info=%2F%09.xmfish.com; 24a79_lastvisit=1895%091464599916%09%2Fjq_ajax.php%3FactionshowFace%26%26uid1503627; 24a79_user_id_flag=82e2rvlV6%2FU9lItfUGcMLNc%2F%2F8ldgt%2F8hiURfp1BUNR8iErU; 24a79_lastupd1503627=1";

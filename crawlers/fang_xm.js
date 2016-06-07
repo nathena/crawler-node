@@ -7,7 +7,7 @@ var cheerio = require("cheerio");
 var uuid = require("../lib/UUID");
 var dateTime = require("../lib/DateTimeUtil");
 
-var Worker = require("./myWorker");
+var Worker = require("../lib/WorkerChain");
 
 var options = {};
 options["Accept-Charset"] = "gb2312";

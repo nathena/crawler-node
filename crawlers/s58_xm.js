@@ -7,7 +7,7 @@ var cheerio = require("cheerio");
 var uuid = require("../lib/UUID");
 var dateTime = require("../lib/DateTimeUtil");
 
-var Worker = require("./myWorker");
+var Worker = require("../lib/WorkerChain");
 
 var options = {};
 options["User-Agent"] = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36";
