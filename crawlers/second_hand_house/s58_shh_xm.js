@@ -12,32 +12,26 @@ var Worker = require("../../lib/WorkerChain");
 var options = {};
 options["User-Agent"] = "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36";
 
-var url = "http://m.58.com/xm/chuzu/0/pn%d/";
+var url = "http://m.58.com/xm/ershoufang/pn%d/?segment=true";
 var detailUrl = "%s";
 var mobile_site = "http://app.58.com/api/windex/scandetail/car/%d/?pid=799"
 
 var urls = [util.format(url,1),util.format(url,2)];
 //var urls = [util.format(url,1)];
 
-Worker.start("s58_xm",urls,options,function(datas){
+Worker.start("s58_shh_xm",urls,options,function(datas){
     var data = [];
     var body = "",url = "";
     for(var i=0;i<datas.length;i++){
-
         body = datas[i][0],url = datas[i][1];
-        //body = datas[0][0],url = datas[0][1];
-
         var $ = cheerio.load(body);
-
         var list = $("ul.list-info li");
-
         var href = "";
         list.each(function(index,val){
             href = $(val).find("a").eq(0).attr("href");
             data.push(util.format(detailUrl,href));
         });
     }
-
     return data;
 
 },function(datas,_cralweredData){
@@ -131,31 +125,8 @@ Worker.start("s58_xm",urls,options,function(datas){
     }
 
     if( data.length>0 ){
-        var mapRequests = Worker.mapRequests(data,urls,options).then(function(datas){
-
-            var data = [];
-            var house = null,body = "",url = "";
-            for(var i=0;i<datas.length;i++ ){
-
-                house = datas[i][0],body = datas[i][1], url= datas[i][2];
-
-                var $ = cheerio.load(body,{decodeEntities: false});
-                var mobile = $('.nums').text().replace(/\-/g,"").trim();
-                if( !mobile ){
-                    mobile = $("p.tel").attr("data-tel").replace(/\-/g,"").trim();
-                }
-
-                house["mobile"] = mobile;
-                logger.debug("  ..... 电话号码"+mobile+".... "+url);
-
-                data.push(house);
-            }
-            return data;
-        });
-
-        return mapRequests;
+        return data;
     }
-
     return Promise.reject("没有新的数据可以抓取");
 
 })

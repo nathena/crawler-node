@@ -89,9 +89,5 @@ Worker.start("xmfish",urls,options,function(datas){
         data.push(house);
     }
 
-    if( data.length>0 ) {
-        return data;
-    }else{
-        return Promise.reject("没有新的数据可以抓取");
-    }
+    return data;
 })

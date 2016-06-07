@@ -157,5 +157,4 @@ Worker.start("s58_xm",urls,options,function(datas){
     }
 
     return Promise.reject("没有新的数据可以抓取");
-
 })
