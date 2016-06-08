@@ -24,7 +24,8 @@ worker["city"] = "厦门";
 worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
 worker["site_code"] = "xiamen";
-worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+//worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 worker = {};
@@ -35,7 +36,8 @@ worker["city"] = "广州";
 worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
 worker["site_code"] = "guangzhou";
-worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+//worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 Worker.start(workers,parserList,parserDetail);

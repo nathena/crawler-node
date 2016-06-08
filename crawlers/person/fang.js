@@ -39,8 +39,9 @@ worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
 worker["options"] = {"encoding":null};
 worker["site_code"] = "gz";
-worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
-//workers.push(worker);
+//worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
+workers.push(worker);
 
 Worker.start(workers,parserList,parserDetail);
 

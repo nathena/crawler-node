@@ -25,7 +25,8 @@ worker["city"] = "厦门";
 worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
 worker["site_code"] = "xm";
-worker["list_urls"] = [util.format(url,1),util.format(url,2)];
+//worker["list_urls"] = [util.format(url,1),util.format(url,2)];
+worker["list_urls"] = [util.format(url,1)];
 workers.push(worker);
 
 Worker.start(workers,parserList,parserDetail);

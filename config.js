@@ -11,8 +11,8 @@ exports = module.exports = {
     version: "0.1.0",
 
     log4js: {
-        //"category": "console",
-        "category": "logInfo",
+        "category": "console",
+        //"category": "logInfo",
         "appenders": [
             // 下面一行应该是用于跟express配合输出web请求url日志的
             {"type": "console", "category": "console"},

@@ -26,7 +26,8 @@ worker["city"] = "厦门";
 worker["storeScheme"] = "t_crawler_shh";
 worker["headers"] = headers;
 worker["site_code"] = "xm";
-worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+//worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 worker = {};
@@ -37,7 +38,8 @@ worker["city"] = "广州";
 worker["storeScheme"] = "t_crawler_shh";
 worker["headers"] = headers;
 worker["site_code"] = "gz";
-worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+//worker["list_urls"] = [util.format(url,worker["site_code"],1),util.format(url,worker["site_code"],2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 Worker.start(workers,parserList,parserDetail);
@@ -71,7 +73,7 @@ function parserDetail(data,worker){
     if( index > -1 ){
         pub_date = pub_date.substring(index+"</script>".length,pub_date.length).trim();
     }
-    house["pub_date"] = (pub_date || dateTime.getCurrentDate()).trim();
+    house["pub_date"] = (pub_date || dateTime.getCurrentDate()).replace("发布：","").trim();
 
     var regions = $(".infor-other li").eq(3).text().replace("位置：","").trim();
     regions = regions.split("-");
@@ -110,7 +112,7 @@ function parserDetail(data,worker){
     //更新次数
     house["up"] = 0;
 
-    console.log(house);
+    //console.log(house);
 
     return house;
 }

@@ -23,7 +23,9 @@ worker["province"] = "福建";
 worker["city"] = "厦门";
 worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
-worker["list_urls"] = [util.format(url,"xm",1),util.format(url,"xm",2)];
+worker["site_code"] = "xm";
+//worker["list_urls"] = [util.format(url,"xm",1),util.format(url,"xm",2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 worker = {};
@@ -33,7 +35,9 @@ worker["province"] = "广东";
 worker["city"] = "广州";
 worker["storeScheme"] = "t_crawler";
 worker["headers"] = headers;
-worker["list_urls"] = [util.format(url,"gz",1),util.format(url,"gz",2)];
+worker["site_code"] = "gz";
+//worker["list_urls"] = [util.format(url,"gz",1),util.format(url,"gz",2)];
+worker["list_urls"] = [util.format(url,worker["site_code"],1)];
 workers.push(worker);
 
 Worker.start(workers,parserList,parserDetail);
